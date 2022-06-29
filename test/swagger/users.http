@@ -1,0 +1,56 @@
+### Create user
+POST {{url}}/users/
+
+{
+  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53"
+}
+
+### Update user
+PUT {{url}}/users/
+
+{
+  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+  "levelId": 1,
+  "name": "Usuario http cambio",
+  "email": "usuario_http_cambio@domain.com"
+}
+
+### Update user password
+PUT {{url}}/users/password/
+
+{
+  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53"
+}
+
+### Get user by id
+GET {{url}}/users/:id
+
+{
+  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+  "companyId": "862a2873-f8c1-4cc2-b04e-756c54ec296a",
+  "levelId": 1,
+  "name": "Usuario http cambio",
+  "email": "usuario_http_cambio@domain.com",
+  "status": "INACTIVE"
+}
+
+### Activate user
+PUT {{url}}/users/activate
+
+{
+  "result": true
+}
+
+### Inactivate user
+PUT {{url}}/users/inactivate
+
+{
+  "result": true
+}
+
+### Lock user
+PUT {{url}}/users/lock
+
+{
+  "result": true
+}

@@ -1,0 +1,58 @@
+### Create wallet
+POST {{url}}/blockchain/wallet
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "seed": "d8d78d809328769b97c76b9d77d491235241bd2f42ff76d12b9c8a32ba6314c27311a2f5178baa1beb7fee55d4af6ef782d88e74529b759fdc1add4dccdf0660",
+  "indexId": 1,
+  "currency": "XOY"
+}
+
+### Send transaction
+POST {{url}}/blockchain/send/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "from": "0x75393d51027e34c2279eDB419754155719cA05e3",
+  "to": "0x14d5668FFF8a0719f6FE9A8060F8e86837e995E2",
+  "amount": "1",
+  "currency": "XOY"
+}
+
+### Send transaction (company)
+POST {{url}}/blockchain/send/company
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "from": "0xe4a2B65cd2265e79948Dac99786EA74f26438C2C",
+  "to": "0x14d5668FFF8a0719f6FE9A8060F8e86837e995E2",
+  "amount": "1",
+  "currency": "XOY"
+}
+
+### Get balance by address and currency
+GET {{url}}/blockchain/balance/address/0xA54e2f49A5C9739aC1D96d1F37dE4671CdEc362A/currency/XOY
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get transaction by txId and currency
+GET {{url}}/blockchain/transaction/0x3c5cc2f09da36257bb3eb37a193d71f7759d5eba114c22190c0acb2edd94740b/currency/XOY
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get transactions by address and currency
+GET {{url}}/blockchain/transactions/address/0x14d5668FFF8a0719f6FE9A8060F8e86837e995E2/currency/XOY
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get block by height and currency
+### height 11092874 after fork -> 11087035 berfore fork - (5839 blocks difference)
+GET {{url}}/blockchain/block/height/11092874/currency/XOY
+Content-Type: application/json
+Authorization: {{token}}
+
+### Ejemplo tx con data: 0x904f8e3af19f1fdbbe7a0e534b6a8f080ff6b2ad79c7a874cee22b53ee70f717
+### Usar to-hex en la tx: data: toHex('mensaje')

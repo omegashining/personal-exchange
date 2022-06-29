@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "levelId": 1,
+    "type": "MXN",
+    "deposit": 50,
+    "withdrawal": 50
+  },
+  {
+    "id": 2,
+    "levelId": 1,
+    "type": "XOY",
+    "deposit": 100,
+    "withdrawal": 100
+  },
+  {
+    "type": "XOY",
+    "deposit": 100,
+    "withdrawal": 100
+  }
+]

@@ -1,0 +1,46 @@
+### Get deposit by hash
+GET {{url}}/deposits_users/hash/:hash
+
+{
+  "id": "ef9638ac-6b71-4127-b502-6d9a94c92327",
+  "walletId": "114c0696-e478-4f73-9aec-5805539cf030",
+  "hash": "hash-1",
+  "sender": "address-1",
+  "amount": "1.00000000",
+  "fee": "2",
+  "confirmations": "2",
+  "status": "PENDING",
+  "timestamp": "1970-01-01T00:00:00.000Z"
+}
+
+### Get deposits by wallet
+GET {{url}}/deposits_users/wallet/:walletId
+
+[
+  {
+    "id": "56f9628e-ecc0-402c-939c-9983d04c0603",
+    "walletId": "114c0696-e478-4f73-9aec-5805539cf030",
+    "hash": "hash-2",
+    "sender": "address-2",
+    "amount": "2.00000000",
+    "fee": "2",
+    "confirmations": "2",
+    "status": "PENDING",
+    "timestamp": null,
+    "createdAt": "2021-10-26T02:25:50.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "ef9638ac-6b71-4127-b502-6d9a94c92327",
+    "walletId": "114c0696-e478-4f73-9aec-5805539cf030",
+    "hash": "hash-1",
+    "sender": "address-1",
+    "amount": "1.00000000",
+    "fee": "2",
+    "confirmations": "2",
+    "status": "PENDING",
+    "timestamp": "1970-01-01T00:00:00.000Z",
+    "createdAt": "2021-10-26T02:25:50.000Z",
+    "updatedAt": null
+  }
+]

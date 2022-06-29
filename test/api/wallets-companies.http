@@ -1,0 +1,24 @@
+### Create wallet
+POST {{url}}/wallets_companies/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+  "currency": "XOYC"
+}
+
+### Get wallet by company and currency
+GET {{url}}/wallets_companies/company/9eb0b6ef-a257-4e91-9f24-88ab162a6f01/currency/XOY
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get wallet by address and currency
+GET {{url}}/wallets_companies/address/0xB2e067b99702A40c6C4c64123cdceb6bD1dCa42D/currency/ETH
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get wallets by company
+GET {{url}}/wallets_companies/company/eb6b84dc-a768-43d9-b59e-d1276de51816
+Content-Type: application/json
+Authorization: {{token}}

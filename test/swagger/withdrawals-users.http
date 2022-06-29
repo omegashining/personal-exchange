@@ -1,0 +1,45 @@
+### Get withdrawal by hash
+GET {{url}}/withdrawals_users/hash/:hash
+
+{
+  "id": "5ed14731-e86e-4559-adb1-90aa2a61ebe0",
+  "walletId": "1c25613e-5cdb-4e92-9a13-e94864638066",
+  "hash": "hash-1",
+  "amount": "1",
+  "fee": "2",
+  "confirmations": "2",
+  "status": "PENDING",
+  "timestamp": "1970-01-01T00:00:00.000Z"
+}
+
+### Get withdrawals by wallet
+GET {{url}}/withdrawals_users/wallet/:walletId
+
+[
+  {
+    "id": "5ed14731-e86e-4559-adb1-90aa2a61ebe0",
+    "walletId": "1c25613e-5cdb-4e92-9a13-e94864638066",
+    "hash": "hash-1",
+    "receiver": "address-1",
+    "amount": "1",
+    "fee": "2",
+    "confirmations": "2",
+    "status": "PENDING",
+    "timestamp": "1970-01-01T00:00:00.000Z",
+    "createdAt": "2021-10-26T02:25:51.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "fa4b87ae-6fa4-4ffb-a671-c0b30a0d87d8",
+    "walletId": "1c25613e-5cdb-4e92-9a13-e94864638066",
+    "hash": "hash-2",
+    "receiver": "address-2",
+    "amount": "2",
+    "fee": "2",
+    "confirmations": "2",
+    "status": "PENDING",
+    "timestamp": null,
+    "createdAt": "2021-10-26T02:25:51.000Z",
+    "updatedAt": null
+  }
+]

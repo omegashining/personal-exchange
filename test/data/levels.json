@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+    "order": 1,
+    "description": "LEVEL_1"
+  },
+  {
+    "id": 2,
+    "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+    "order": 2,
+    "description": "LEVEL_2"
+  },
+  {
+    "description": "LEVEL_1_CHANGE"
+  }
+]

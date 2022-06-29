@@ -1,0 +1,25 @@
+### Create wallet
+POST {{url}}/blockchain/wallet
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "seed": "d8d78d809328769b97c76b9d77d491235241bd2f42ff76d12b9c8a32ba6314c27311a2f5178baa1beb7fee55d4af6ef782d88e74529b759fdc1add4dccdf0660",
+  "indexId": 1,
+  "currency": "USDT"
+}
+
+### Get balance by address and currency
+GET {{url}}/blockchain/balance/address/1gbp1BtcvNLwFyxESuNdRSQHPLB92xRTn/currency/USDT
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get transaction by txId and currency
+GET {{url}}/blockchain/transaction/575fdf9b9fed9944afb62c09f0cc57b34cd69c5e6e127be63afee2e41d8dc3a2/currency/USDT
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get transactions by address and currency
+GET {{url}}/blockchain/transactions/address/1NHetJNXXuBw8vW2cAmfJqQYdf7fqhL8b4/currency/USDT
+Content-Type: application/json
+Authorization: {{token}}

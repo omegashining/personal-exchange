@@ -1,0 +1,23 @@
+### Send transaction
+POST {{url}}/blockchain/send/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "userId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+  "to": "0xA54e2f49A5C9739aC1D96d1F37dE4671CdEc362A",
+  "amount": "100",
+  "currency": "XOY"
+}
+
+### Send transaction (company)
+POST {{url}}/blockchain/send/company
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+  "to": "0xA54e2f49A5C9739aC1D96d1F37dE4671CdEc362A",
+  "amount": "100",
+  "currency": "XOY"
+}

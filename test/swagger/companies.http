@@ -1,0 +1,46 @@
+### Create company
+POST {{url}}/companies/
+
+{
+  "id": "8c2139de-8419-46f0-ac1d-643a485b8ff4"
+}
+
+### Update company
+PUT {{url}}/companies/
+
+{
+  "id": "8c2139de-8419-46f0-ac1d-643a485b8ff4",
+  "name": "Empresa http cambio",
+  "planType": "BASIC"
+}
+
+### Get company by id
+GET {{url}}/companies/:id
+
+{
+  "id": "8c2139de-8419-46f0-ac1d-643a485b8ff4",
+  "name": "Empresa http cambio",
+  "planType": "BASIC",
+  "status": "INACTIVE"
+}
+
+### Activate company
+PUT {{url}}/companies/activate
+
+{
+  "result": true
+}
+
+### Inactivate company
+PUT {{url}}/companies/inactivate
+
+{
+  "result": true
+}
+
+### Lock company
+PUT {{url}}/companies/lock
+
+{
+  "result": true
+}

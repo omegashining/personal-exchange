@@ -1,0 +1,19 @@
+### Get events
+GET {{url}}/events/
+
+[
+  {
+    "id": 1,
+    "description": "Depositos",
+    "status": "ACTIVE",
+    "createdAt": "2021-12-10T00:47:11.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": 2,
+    "description": "Retiros",
+    "status": "ACTIVE",
+    "createdAt": "2021-12-10T00:47:11.000Z",
+    "updatedAt": null
+  }
+]

@@ -1,0 +1,123 @@
+name: Xoycoin-Exchange
+
+on:
+  pull_request:
+    branches: [ staging ]
+  push:
+    branches: [ staging ]
+
+env:
+  IMAGE_NAME: xoycoin_exchange
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Remove package-lock
+        run: rm package-lock.json
+
+      - name: Define Docker image version
+        run: |
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "master" ] && VERSION=latest
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build docker image
+        run: docker build . --tag $IMAGE_NAME:$VERSION
+
+      - name: Log into GitHub Container Registry
+        if: github.event_name == 'push'
+        run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u actions-docker --password-stdin
+
+      - name: Push image to GitHub Container Registry
+        if: github.event_name == 'push'
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME:$VERSION $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: xoycoin
+          MYSQL_DATABASE: xoycoin
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+
+      exchange:
+        image: ghcr.io/xellcoders/xoycoin_exchange:staging
+        env:
+          DB_USER: root
+          DB_PASS: ${{ secrets.DB_TEST_PASS }}
+          DB_IP: mysql
+          REDIS_IP: redis
+          REDIS_ENABLED: true
+        ports:
+          - 8080:8080
+
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up mysql
+        run: #|
+      #    sudo apt-get install -y mysql-community-client
+          mysql --host 127.0.0.1 --port 3306 -u root -p${{ secrets.DB_TEST_PASS }} xoycoin < db.sql
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      # elimino el lock para permitir que se ejecute de forma adecuada el install
+      - run: rm package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+
+      # - name: Generate objects of database
+      #   run: npm run-script model
+      #   env:
+      #     DB_USER: root
+      #     DB_PASS: ${{ secrets.DB_TEST_PASS }}
+
+      - name: Run Unit tests
+        run: npm test
+        env:
+          DB_USER: root
+          DB_PASS: ${{ secrets.DB_TEST_PASS }}
+
+      - name: Run Integration tests
+        run: npm run-script integration
+        env:
+          DB_USER: root
+          DB_PASS: ${{ secrets.DB_TEST_PASS }}

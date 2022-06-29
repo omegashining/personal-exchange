@@ -1,0 +1,22 @@
+[
+  {
+    "id": "bd0c578e-3124-4b0c-ab15-ba3047bb9097",
+    "walletTypeId": 2,
+    "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+    "userId": "0808ebfc-872d-44d8-9187-e78feb4c409b",
+    "privateKey": "232c298e25daa53c74b968ad115bee85a56d53617544a851e7f0aacaa4b852ef",
+    "publicKey": "0x75393d51027e34c2279eDB419754155719cA05e3",
+    "address": "0x75393d51027e34c2279eDB419754155719cA05e3",
+    "balance": 1
+  },
+  {
+    "id": "c5adc532-1958-4c44-8fe4-85d09f74eb32",
+    "walletTypeId": 3,
+    "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+    "userId": "0808ebfc-872d-44d8-9187-e78feb4c409b",
+    "privateKey": "private-key",
+    "publicKey": "public-key",
+    "address": "address",
+    "balance": 0
+  }
+]

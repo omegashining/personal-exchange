@@ -1,0 +1,48 @@
+### Get withdrawal by hash
+GET {{url}}/withdrawals_companies/hash/:hash
+
+{
+  "id": "d763ece4-a3d4-4a42-8945-c8270a6d70bd",
+  "walletId": "98ff7d34-8fb4-475b-a1fe-d7e9d5fb1fab",
+  "userId": "b3de0177-020a-11ec-8efe-0242ac110003",
+  "receiver": "address-1",
+  "amount": "1",
+  "fee": "2",
+  "confirmations": "2",
+  "status": "PENDING",
+  "timestamp": "1970-01-01T00:00:00.000Z"
+}
+
+### Get withdrawals by user and wallet
+GET {{url}}/withdrawals_companies/user/:userId/wallet/:walletId
+
+[
+  {
+    "id": "cf8e4ba7-02e4-4626-a2ac-4c0de5fcde4c",
+    "walletId": "98ff7d34-8fb4-475b-a1fe-d7e9d5fb1fab",
+    "userId": "b3de0177-020a-11ec-8efe-0242ac110003",
+    "hash": "hash-2",
+    "receiver": "address-2",
+    "amount": "2",
+    "fee": "2",
+    "confirmations": "2",
+    "status": "PENDING",
+    "timestamp": null,
+    "createdAt": "2021-10-26T02:25:51.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "d763ece4-a3d4-4a42-8945-c8270a6d70bd",
+    "walletId": "98ff7d34-8fb4-475b-a1fe-d7e9d5fb1fab",
+    "userId": "b3de0177-020a-11ec-8efe-0242ac110003",
+    "hash": "hash-1",
+    "receiver": "address-1",
+    "amount": "1",
+    "fee": "2",
+    "confirmations": "2",
+    "status": "PENDING",
+    "timestamp": "1970-01-01T00:00:00.000Z",
+    "createdAt": "2021-10-26T02:25:51.000Z",
+    "updatedAt": null
+  }
+]

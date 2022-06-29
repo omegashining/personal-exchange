@@ -1,0 +1,29 @@
+### Create limit
+POST {{url}}/limits/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "levelId": 5,
+  "type": "BTC",
+  "deposit": "50",
+  "withdrawal": "50"
+}
+
+### Update limit
+PUT {{url}}/limits/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 3,
+  "type": "XOY",
+  "deposit": 100,
+  "withdrawal": 100
+}
+
+### Get limits by level
+GET {{url}}/limits/level/5
+Content-Type: application/json
+Authorization: {{token}}
+

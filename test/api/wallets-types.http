@@ -1,0 +1,4 @@
+### Get wallets types
+GET {{url}}/wallets_types/
+Content-Type: application/json
+Authorization: {{token}}

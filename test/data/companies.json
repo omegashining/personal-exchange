@@ -1,0 +1,19 @@
+[
+  {
+    "id": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+    "accessId": "8a57d020-3967-42e9-b3d7-8f893d84d3d2",
+    "name": "Company Test 1",
+    "seed": "d8d78d809328769b97c76b9d77d491235241bd2f42ff76d12b9c8a32ba6314c27311a2f5178baa1beb7fee55d4af6ef782d88e74529b759fdc1add4dccdf0660",
+    "mnemonic": "sword where exchange layer slide quick tilt merit virtual acid thank rebel orchard adapt tiny celery alpha harbor direct exercise wage sail tank fantasy",
+    "status": "INACTIVE"
+  },
+  {
+    "id": "ee5300b1-9e10-448c-8e65-cc1f5d7b6d21",
+    "accessId": "8a57d020-3967-42e9-b3d7-8f893d84d3d2",
+    "name": "Company Test 2",
+    "status": "INACTIVE"
+  },
+  {
+    "name": "Empresa Test change"
+  }
+]

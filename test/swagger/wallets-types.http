@@ -1,0 +1,37 @@
+### Get wallets types
+GET {{url}}/wallets_types/
+
+[
+  {
+    "id": 1,
+    "acronym": "BTC",
+    "description": "Bitcoin",
+    "confirmations": 2,
+    "createdAt": "2021-10-26T02:25:37.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": 2,
+    "acronym": "ETH",
+    "description": "Ethereum",
+    "confirmations": 2,
+    "createdAt": "2021-10-26T02:25:37.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": 3,
+    "acronym": "USDT",
+    "description": "Tether",
+    "confirmations": 2,
+    "createdAt": "2021-10-26T02:25:37.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": 4,
+    "acronym": "XOY",
+    "description": "Xoycoin",
+    "confirmations": 2,
+    "createdAt": "2021-10-26T02:25:37.000Z",
+    "updatedAt": null
+  }
+]

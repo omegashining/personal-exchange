@@ -1,0 +1,21 @@
+### Validate XOY
+POST {{url}}/deposits_companies/validate/xoy
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+  "hash": "0x4f3bb8e499591eee634725d1ed2ad7d44c5c2e8744385233eb31f69a60b0af70",
+  "amount": 100,
+  "signature": "0x214357cb2401edb3703de13b5657ab1fbe8f471b33a33f181901255f706f38286dc8b0930075b4812f8a386f76af9a5fd4ebd07e1e9f804b807024b42d01f07e1b"
+}
+
+### Get deposit by hash
+GET {{url}}/deposits_companies/hash/0xe314044099d5ae9e02d901d3b5ef5e8e576045e5d6802e7bfdc61ed40618e9e2
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get deposits by wallet
+GET {{url}}/deposits_companies/wallet/4f6f4bed-01ef-43d6-a705-afb458d1b9e5
+Content-Type: application/json
+Authorization: {{token}}

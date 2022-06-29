@@ -1,0 +1,20 @@
+### Create limit
+POST {{url}}/limits/
+
+{
+  "id": 3
+}
+
+### Update limit
+PUT {{url}}/limits/
+
+{
+  "id": 3,
+  "type": "XOY",
+  "deposit": 100,
+  "withdrawal": 100
+}
+
+### Get limits by level
+GET {{url}}/limits/level/:level
+

@@ -1,0 +1,25 @@
+### Create level
+POST {{url}}/levels/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "companyId": "eb6b84dc-a768-43d9-b59e-d1276de51816",
+  "order": 2,
+  "description": "LEVEL_2"
+}
+
+### Update level
+PUT {{url}}/levels/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": 5,
+  "description": "LEVEL_2_CAMBIO"
+}
+
+### Get levels by company
+GET {{url}}/levels/company/eb6b84dc-a768-43d9-b59e-d1276de51816
+Content-Type: application/json
+Authorization: {{token}}

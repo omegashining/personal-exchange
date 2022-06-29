@@ -1,0 +1,65 @@
+### Create user
+POST {{url}}/users/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "companyId": "458fba7d-ed81-4da8-a00c-21b5f520aee4",
+  "name": "User upick",
+  "email": "userupick@domain.com",
+  "password": "Userupick2022"
+}
+
+### Update user
+PUT {{url}}/users/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+  "levelId": 1,
+  "name": "Usuario http cambio",
+  "email": "usuario_http_cambio@domain.com"
+}
+
+### Update user password
+PUT {{url}}/users/password/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+  "password": "usuario_http_cambio"
+}
+
+### Get user by id
+GET {{url}}/users/2c7d0d20-1cb5-4b21-b7e6-161480293c53
+Content-Type: application/json
+Authorization: {{token}}
+
+### Activate user
+PUT {{url}}/users/activate
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "3c1b5e95-3d12-494d-b727-1e6053891986"
+}
+
+### Inactivate user
+PUT {{url}}/users/inactivate
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53"
+}
+
+### Lock user
+PUT {{url}}/users/lock
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53"
+}

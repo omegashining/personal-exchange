@@ -1,0 +1,13 @@
+FROM node:14.17.1
+WORKDIR /app
+
+COPY ./package*.json ./
+RUN npm ci
+
+COPY src ./src
+CMD [ "npm", "run", "crons-tx-companies" ]
+
+# docker build -f Dockerfile_Cron_Companies . -t xoycoin/xoycoin-exchange-cron-companies
+# docker run --name xoycoin-exchange-cron-companies --env-file ./xoycoin_exchange.env --link xoycoin-mysql --link xoycoin-redis xoycoin/xoycoin-exchange-cron-companies
+
+# docker run --name xoycoin-exchange-cron-companies --env-file ./local.env --link xoycoin-mysql --link xoycoin-redis xoycoin/xoycoin-exchange-cron-companies

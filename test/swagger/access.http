@@ -1,0 +1,62 @@
+### Authenticate
+POST {{url}}/access/
+
+{
+  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+  "name": "exchange",
+  "email": "exchange",
+  "token": "6dID6EZCZXXzZCBPJRchmrEP2uWb7TpI1J1rRHpvFh15mc57DY5aI41gEJ9pNRNv"
+}
+
+### Get access
+GET {{url}}/access/
+
+{
+  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+  "name": "exchange",
+  "email": "exchange"
+}
+
+### Get access by id
+GET {{url}}/access/:id
+
+{
+  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+  "name": "exchange",
+  "email": "exchange"
+}
+
+### Enable access session
+PUT {{url}}/access/
+
+{
+  "result": true
+}
+
+### Delete access session
+DELETE {{url}}/access/
+
+{
+  "result": true
+}
+
+### Activate access
+PUT {{url}}/access/activate
+
+{
+  "result": true
+}
+
+### Inactivate access
+PUT {{url}}/access/inactivate
+
+{
+  "result": true
+}
+
+### Lock access
+PUT {{url}}/access/lock
+
+{
+  "result": true
+}

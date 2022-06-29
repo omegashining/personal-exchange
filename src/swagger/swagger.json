@@ -1,0 +1,2801 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Xoycoin Exchange",
+    "description": "Métodos de la API de Xoycoin Exchange",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api-xoycoin.xellcoders.com",
+      "description": "Xoycoin Exchange API"
+    }
+  ],
+  "tags": [
+    {
+      "name": "access",
+      "description": "Acceso"
+    },
+    {
+      "name": "blockchain",
+      "description": "Blockchain"
+    },
+    {
+      "name": "companies",
+      "description": "Empresas"
+    },
+    {
+      "name": "deposits_companies",
+      "description": "Depósitos de las empresas"
+    },
+    {
+      "name": "deposits_users",
+      "description": "Depósitos de los usuarios"
+    },
+    {
+      "name": "events",
+      "description": "Eventos de los webhooks"
+    },
+    {
+      "name": "levels",
+      "description": "Niveles de las empresas"
+    },
+    {
+      "name": "limits",
+      "description": "Límites por nivel de empresa"
+    },
+    {
+      "name": "users",
+      "description": "Usuarios"
+    },
+    {
+      "name": "wallets_companies",
+      "description": "Wallets de las empresas"
+    },
+    {
+      "name": "wallets_types",
+      "description": "Tipos de wallet"
+    },
+    {
+      "name": "wallets_users",
+      "description": "Wallets de los usuarios"
+    },
+    {
+      "name": "withdrawals_companies",
+      "description": "Retiros de las empresas"
+    },
+    {
+      "name": "withdrawals_users",
+      "description": "Retiros de los usuarios"
+    },
+    {
+      "name": "webhooks",
+      "description": "Webhooks"
+    }
+  ],
+  "paths": {
+    "/access": {
+      "get": {
+        "tags": [
+          "access"
+        ],
+        "summary": "Get user data",
+        "description": "Obtiene los datos del usuario asociado al token de acceso.",
+        "responses": {
+          "200": {
+            "description": "Access object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Access"
+                },
+                "example": {
+                  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+                  "email": "exchange@domain.com",
+                  "status": "LOCKED"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Access not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "access"
+        ],
+        "summary": "Refresh access session",
+        "description": "Resfresca la vigencia del token de acceso.",
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "access"
+        ],
+        "summary": "Authentication",
+        "description": "Autenticación",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/access_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Access object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Access"
+                },
+                "example": {
+                  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+                  "email": "exchange@domain.com",
+                  "status": "LOCKED",
+                  "token": "6dID6EZCZXXzZCBPJRchmrEP2uWb7TpI1J1rRHpvFh15mc57DY5aI41gEJ9pNRNv"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "ERROR: Access not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "access"
+        ],
+        "summary": "Delete access session",
+        "description": "Elimina la sesión del token de acceso.",
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/access/{accessId}": {
+      "get": {
+        "tags": [
+          "access"
+        ],
+        "summary": "Get access data by id",
+        "description": "Obtiene los datos del usuario mediante el id proporcionado.",
+        "parameters": [
+          {
+            "name": "accessId",
+            "in": "path",
+            "description": "Id of the access to return",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Access object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Access"
+                },
+                "example": {
+                  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+                  "email": "exchange@domain.com",
+                  "status": "LOCKED"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Access not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/access/activate": {
+      "put": {
+        "tags": [
+          "access"
+        ],
+        "summary": "Activate access",
+        "description": "Activa un usaurio.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/access_activate_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/access/inactivate": {
+      "put": {
+        "tags": [
+          "access"
+        ],
+        "summary": "Inactivate access",
+        "description": "Inactiva un usuario.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/access_inactivate_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/access/lock": {
+      "put": {
+        "tags": [
+          "access"
+        ],
+        "summary": "Lock access",
+        "description": "Bloquea un usuario.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/access_lock_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/blockchain/send": {
+      "post": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "Send user transaction (BTC, ETH, XOY)",
+        "description": "Envía una transacción de usuario (BTC, ETH, XOY).",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/blockchain_send_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction",
+            "content": {
+              "application/json": {
+                "example": {
+                  "hash": "0x3c5cc2f09da36257bb3eb37a193d71f7759d5eba114c22190c0acb2edd94740b",
+                  "fee": 0.001
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/blockchain/send/company": {
+      "post": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "Send company transaction (BTC, ETH, XOY, XOYC)",
+        "description": "Envía una transacción de empresa (BTC, ETH, XOY).",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/send_company_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction",
+            "content": {
+              "application/json": {
+                "example": {
+                  "hash": "0x3c5cc2f09da36257bb3eb37a193d71f7759d5eba114c22190c0acb2edd94740b",
+                  "fee": 0.001
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/companies": {
+      "put": {
+        "tags": [
+          "companies"
+        ],
+        "summary": "Update company",
+        "description": "Actualiza la información de una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/companies_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Company object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                },
+                "example": {
+                  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+                  "name\"": "Company name",
+                  "status\"": "LOCKED"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "companies"
+        ],
+        "summary": "Create company",
+        "description": "Crea una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/companies_body_1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Company object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                },
+                "example": {
+                  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+                  "name": "Company name",
+                  "status": "LOCKED"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/companies/contract": {
+      "post": {
+        "tags": [
+          "companies"
+        ],
+        "summary": "Create contract",
+        "description": "Crea el contrato inteligente (XOY) de una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/companies_contract_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/companies/{id}": {
+      "get": {
+        "tags": [
+          "companies"
+        ],
+        "summary": "Get company by id",
+        "description": "Obtiene la información de una empresa mediante el id proporcionado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the company to return",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Company object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                },
+                "example": {
+                  "id": "a860b92d-093d-4fe7-a7d5-e810cb7fcd3a",
+                  "name": "Company name",
+                  "planType": "BASIC"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Company not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/companies/activate": {
+      "put": {
+        "tags": [
+          "companies"
+        ],
+        "summary": "Activate company",
+        "description": "Activa una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/companies_activate_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/companies/inactivate": {
+      "put": {
+        "tags": [
+          "companies"
+        ],
+        "summary": "Inactivate company",
+        "description": "Inactiva una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/companies_inactivate_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/companies/lock": {
+      "put": {
+        "tags": [
+          "companies"
+        ],
+        "summary": "Lock company",
+        "description": "Bloquea una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/companies_lock_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/deposits_companies/validate/xoy": {
+      "post": {
+        "tags": [
+          "deposits_companies"
+        ],
+        "summary": "Validate XOY company deposit",
+        "description": "Valida el depósito (XOY) de una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/validate_xoy_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction",
+            "content": {
+              "application/json": {
+                "example": {
+                  "hash": "0x3c5cc2f09da36257bb3eb37a193d71f7759d5eba114c22190c0acb2edd94740b",
+                  "fee\"": 0.001
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/deposits_companies/wallet/{walletId}": {
+      "get": {
+        "tags": [
+          "deposits_companies"
+        ],
+        "summary": "Get company deposits by wallet id",
+        "description": "Obtiene los depósitos de una empresa mediante el id de la wallet proporcionado.",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "description": "Id of the wallet to return deposits",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deposits array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepositCompany"
+                },
+                "example": [
+                  {
+                    "id": "b3de0177-020a-11ec-8efe-0242ac110003",
+                    "walletId": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                    "hash": "0x7ce560fa06ca34f0edf0b8922ee480a92cd62c46f85b9d1ca6743975624556df",
+                    "sender": "mrd2zdpLJrdT6uVJKK6qkFz9FcPorbqbkc",
+                    "amount": "1.0",
+                    "fee": "0.001",
+                    "confirmations": 1,
+                    "status": "PENDING"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Company not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/deposits_users/validate/xoy": {
+      "post": {
+        "tags": [
+          "deposits_users"
+        ],
+        "summary": "Validate XOY user deposit",
+        "description": "Valida el depósito (XOY) de un usuario.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/validate_xoy_body_1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction",
+            "content": {
+              "application/json": {
+                "example": {
+                  "hash": "0x3c5cc2f09da36257bb3eb37a193d71f7759d5eba114c22190c0acb2edd94740b",
+                  "fee": 0.001
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/deposits_users/wallet/{walletId}": {
+      "get": {
+        "tags": [
+          "deposits_users"
+        ],
+        "summary": "Get user deposits by wallet id",
+        "description": "Obtiene los depósitos de un usuario mediante el id de la wallet proporcionado.",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "description": "Id of the wallet to return deposits",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array deposits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepositUser"
+                },
+                "example": [
+                  {
+                    "id": "b3de0177-020a-11ec-8efe-0242ac110003",
+                    "walletId": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                    "hash": "0x7ce560fa06ca34f0edf0b8922ee480a92cd62c46f85b9d1ca6743975624556df",
+                    "sender": "mrd2zdpLJrdT6uVJKK6qkFz9FcPorbqbkc",
+                    "amount": "1.0",
+                    "fee": "0.001",
+                    "confirmations": 1,
+                    "status": "PENDING"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: User not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/events": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Get all webhooks events",
+        "description": "Obtiene los eventos disponibles para los webhooks.",
+        "responses": {
+          "200": {
+            "description": "Webhooks events array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "description": "Deposits",
+                    "status": "ACTIVE"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/levels": {
+      "put": {
+        "tags": [
+          "levels"
+        ],
+        "summary": "Update level",
+        "description": "Actualiza el nivel de una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/levels_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Level object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Level"
+                },
+                "example": {
+                  "id": 1,
+                  "companyId": "61c0ccd7-63b6-4071-af7d-b392e0dadb67",
+                  "order": 1,
+                  "description": "Level name"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "levels"
+        ],
+        "summary": "Create level",
+        "description": "Crea el nivel de una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/levels_body_1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Level object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Level"
+                },
+                "example": {
+                  "id": 1,
+                  "companyId": "61c0ccd7-63b6-4071-af7d-b392e0dadb67",
+                  "order": 1,
+                  "description": "Level name"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/levels/company/{companyId}": {
+      "get": {
+        "tags": [
+          "levels"
+        ],
+        "summary": "Get levels by company id",
+        "description": "Obtiene los niveles de una empresa mediante el id proporcionado.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "Id of the company to return levels",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Levels array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Level"
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "companyId": "61c0ccd7-63b6-4071-af7d-b392e0dadb67",
+                    "order": 1,
+                    "description": "Level description"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Company not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/limits": {
+      "put": {
+        "tags": [
+          "limits"
+        ],
+        "summary": "Update limit",
+        "description": "Actualiza un límite.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/limits_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Level object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Level"
+                },
+                "example": {
+                  "id\"": 1,
+                  "levelId": 1,
+                  "type": "MXN",
+                  "deposit": "100.0",
+                  "withdrawal": "100.0"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "limits"
+        ],
+        "summary": "Create limit",
+        "description": "Crea un límite.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/limits_body_1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Level object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Level"
+                },
+                "example": {
+                  "id": 1,
+                  "levelId": 1,
+                  "type": "MXN",
+                  "deposit": "100.0",
+                  "withdrawal": "100.0"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/limits/level/{levelId}": {
+      "get": {
+        "tags": [
+          "limits"
+        ],
+        "summary": "Get limits by level id",
+        "description": "Obtiene los límites de un nivel mediante el id proporcionado.",
+        "parameters": [
+          {
+            "name": "levelId",
+            "in": "path",
+            "description": "Id of the level to return limits",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Limits array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Limit"
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "levelId": 1,
+                    "type": "FIAT",
+                    "deposit": "100.0",
+                    "withdrawal": "100.0"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Level not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/wallets_types": {
+      "get": {
+        "tags": [
+          "wallets_types"
+        ],
+        "summary": "Get all wallets types",
+        "description": "Obtiene los tipos de wallet disponibles.",
+        "responses": {
+          "200": {
+            "description": "Wallets types array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletType"
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "acronym": "BTC",
+                    "description": "Bitcoin",
+                    "confirmations": 2
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Cannot get currencies"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users": {
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update user",
+        "description": "Actualiza un usuario.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/users_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "example": {
+                  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                  "companyId": "458fba7d-ed81-4da8-a00c-21b5f520aee4",
+                  "levelId": 1,
+                  "name": "User name",
+                  "email": "email@domain.com",
+                  "status": "INACTIVE"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create user",
+        "description": "Crea un usuario.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/users_body_1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "example": {
+                  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                  "companyId": "458fba7d-ed81-4da8-a00c-21b5f520aee4",
+                  "levelId": 1,
+                  "name": "User name",
+                  "email": "email@domain.com",
+                  "status": "INACTIVE"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user data by id",
+        "description": "Obtinene la información de un usuario mediante el id proporcionado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the user to return",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "example": {
+                  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                  "companyId": "458fba7d-ed81-4da8-a00c-21b5f520aee4",
+                  "levelId": 1,
+                  "name": "User name",
+                  "email": "email@domain.com",
+                  "status": "INACTIVE"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: User not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/wallets_companies": {
+      "post": {
+        "tags": [
+          "wallets_companies"
+        ],
+        "summary": "Create wallet company",
+        "description": "Crea la wallet de una empresa.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/wallets_companies_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Wallet company object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletCompany"
+                },
+                "example": {
+                  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                  "companyId": "458fba7d-ed81-4da8-a00c-21b5f520aee4",
+                  "currency": "BTC",
+                  "address": "mmqQY79NKhfJwoNwW4znsfATugPU1FaWU2",
+                  "balance": "1.0"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/wallets_companies/company/{companyId}": {
+      "get": {
+        "tags": [
+          "wallets_companies"
+        ],
+        "summary": "Get wallets by company id",
+        "description": "Obtiene las wallets de una empresa mediante el id proporcionado.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "Id of the company to return wallets",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wallets array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletCompany"
+                },
+                "example": [
+                  {
+                    "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                    "companyId": "458fba7d-ed81-4da8-a00c-21b5f520aee4",
+                    "currency": "BTC",
+                    "address": "mmqQY79NKhfJwoNwW4znsfATugPU1FaWU2",
+                    "balance": "1.0"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Company not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/withdrawals_companies/wallet/{walletId}": {
+      "get": {
+        "tags": [
+          "withdrawals_companies"
+        ],
+        "summary": "Get withdrawals by wallet id",
+        "description": "Obtiene los retiros/ordenes de una empresa mediante el id de la wallet proporcionado.",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "description": "Id of the wallet to return withdrawals",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Withdrawals array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WithdrawalCompany"
+                },
+                "example": [
+                  {
+                    "id": "b3de0177-020a-11ec-8efe-0242ac110003",
+                    "walletId": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                    "hash": "0x7ce560fa06ca34f0edf0b8922ee480a92cd62c46f85b9d1ca6743975624556df",
+                    "receiver": "mrd2zdpLJrdT6uVJKK6qkFz9FcPorbqbkc",
+                    "amount": "1.0",
+                    "fee": "0.001",
+                    "confirmations": 1,
+                    "status": "PENDING"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Cannot get withdrawals"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/wallets_users": {
+      "post": {
+        "tags": [
+          "wallets_users"
+        ],
+        "summary": "Create wallet user",
+        "description": "Crea la wallet de un usuario.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/wallets_users_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Wallet user object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletUser"
+                },
+                "example": {
+                  "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                  "userId": "0808ebfc-872d-44d8-9187-e78feb4c409b",
+                  "companyId": "458fba7d-ed81-4da8-a00c-21b5f520aee4",
+                  "currency": "BTC",
+                  "address": "mmqQY79NKhfJwoNwW4znsfATugPU1FaWU2",
+                  "balance": "1.0"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/wallets_users/user/{userId}": {
+      "get": {
+        "tags": [
+          "wallets_users"
+        ],
+        "summary": "Get wallets by user id",
+        "description": "Obtiene las wallets de un usuario mediante el id proporcionado.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "Id of the user to return wallets",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wallets array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletUser"
+                },
+                "example": [
+                  {
+                    "id": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                    "userId": "0808ebfc-872d-44d8-9187-e78feb4c409b",
+                    "companyId": "458fba7d-ed81-4da8-a00c-21b5f520aee4",
+                    "currency": "BTC",
+                    "address": "mmqQY79NKhfJwoNwW4znsfATugPU1FaWU2",
+                    "balance": "1.0"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: User not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/withdrawals_users/wallet/{walletId}": {
+      "get": {
+        "tags": [
+          "withdrawals_users"
+        ],
+        "summary": "Get withdrawals by wallet id",
+        "description": "Obtiene los retiros/ordenes de un usuario mediante el id de la wallet proporcionado.",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "description": "Id of the wallet to return withdrawals",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Withdrawals array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WithdrawalUser"
+                },
+                "example": [
+                  {
+                    "id": "b3de0177-020a-11ec-8efe-0242ac110003",
+                    "walletId": "2c7d0d20-1cb5-4b21-b7e6-161480293c53",
+                    "hash": "0x7ce560fa06ca34f0edf0b8922ee480a92cd62c46f85b9d1ca6743975624556df",
+                    "receiver": "mrd2zdpLJrdT6uVJKK6qkFz9FcPorbqbkc",
+                    "amount": "1.0",
+                    "fee": "0.001",
+                    "confirmations": 1,
+                    "status": "PENDING"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Cannot get withdrawals"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/webhooks/": {
+      "post": {
+        "tags": [
+          "webhooks"
+        ],
+        "summary": "Create webhook",
+        "description": "Crea un webhook.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/webhooks_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                },
+                "example": {
+                  "id": "dd157249-9729-4ce7-a05e-31c765fe323b",
+                  "url": "http://www.domain.com/webhook",
+                  "contentType": "application/json",
+                  "status": "ACTIVE"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/webhooks/event/": {
+      "post": {
+        "tags": [
+          "webhooks"
+        ],
+        "summary": "Assign webhook event",
+        "description": "Asigna un evento a un webhook.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/webhooks_event_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/webhooks/{webhookId}": {
+      "get": {
+        "tags": [
+          "webhooks"
+        ],
+        "summary": "Get webhook by id",
+        "description": "Obtiene un webhook mediante el id proporcionado.",
+        "parameters": [
+          {
+            "name": "webhookId",
+            "in": "path",
+            "description": "Id of the webhook to return",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                },
+                "example": {
+                  "id": "dd157249-9729-4ce7-a05e-31c765fe323b",
+                  "url": "http://www.domain.com/webhook",
+                  "contentType": "application/json",
+                  "status": "ACTIVE"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Webhook not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/webhooks/company/{companyId}": {
+      "get": {
+        "tags": [
+          "webhooks"
+        ],
+        "summary": "Get webhook by company id",
+        "description": "Obtiene un webhook mediante el id de una compañia.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "Id of the company to return webhooks",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhooks array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                },
+                "example": [
+                  {
+                    "id": "dd157249-9729-4ce7-a05e-31c765fe323b",
+                    "url": "http://www.domain.com/webhook",
+                    "contentType": "application/json",
+                    "status": "ACTIVE"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          },
+          "500": {
+            "description": "ERROR: Cannot get webhooks"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/webhooks/activate": {
+      "put": {
+        "tags": [
+          "webhooks"
+        ],
+        "summary": "Activate webhook",
+        "description": "Activa un webhook.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/webhooks_activate_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/webhooks/inactivate": {
+      "put": {
+        "tags": [
+          "webhooks"
+        ],
+        "summary": "Inactivate webhook",
+        "description": "Inactiva un webhook.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/webhooks_inactivate_body"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Status",
+            "content": {
+              "application/json": {
+                "example": {
+                  "result": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Access": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "INACTIVE",
+              "ACTIVE",
+              "LOCKED",
+              "DISABLED"
+            ]
+          }
+        }
+      },
+      "Company": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "planType": {
+            "type": "string"
+          }
+        }
+      },
+      "Level": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Limit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "levelId": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "deposit": {
+            "type": "string"
+          },
+          "withdrawal": {
+            "type": "string"
+          }
+        }
+      },
+      "WalletType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "acronym": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "confirmations": {
+            "type": "integer"
+          }
+        },
+        "xml": {
+          "name": "WalletType"
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "levelId": {
+            "type": "string"
+          }
+        }
+      },
+      "WalletCompany": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "string"
+          }
+        }
+      },
+      "WalletUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "string"
+          }
+        }
+      },
+      "DepositCompany": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "walletId": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "confirmations": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "WithdrawalCompany": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "walletId": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "confirmations": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "DepositUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "walletId": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "confirmations": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "WithdrawalUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "walletId": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "confirmations": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "Webhook": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "secret": {
+            "type": "string"
+          }
+        }
+      },
+      "WebhookEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "webhook": {
+            "type": "string"
+          },
+          "event": {
+            "type": "integer"
+          }
+        }
+      },
+      "access_body": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "access_activate_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "access_inactivate_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "access_lock_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "blockchain_send_body": {
+        "required": [
+          "amount",
+          "currency",
+          "from",
+          "to",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "send_company_body": {
+        "required": [
+          "amount",
+          "companyId",
+          "currency",
+          "from",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "companies_body": {
+        "required": [
+          "id",
+          "name",
+          "planType"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "planType": {
+            "type": "string"
+          }
+        }
+      },
+      "companies_body_1": {
+        "required": [
+          "name",
+          "planType"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "planType": {
+            "type": "string"
+          }
+        }
+      },
+      "companies_contract_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "companies_activate_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "companies_inactivate_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "companies_lock_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "validate_xoy_body": {
+        "required": [
+          "amount",
+          "companyId",
+          "hash",
+          "signature"
+        ],
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          }
+        }
+      },
+      "validate_xoy_body_1": {
+        "required": [
+          "amount",
+          "hash",
+          "signature",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          }
+        }
+      },
+      "levels_body": {
+        "required": [
+          "description",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "levels_body_1": {
+        "required": [
+          "companyId",
+          "description",
+          "order"
+        ],
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "limits_body": {
+        "required": [
+          "deposit",
+          "id",
+          "type",
+          "withdrawal"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "deposit": {
+            "type": "string"
+          },
+          "withdrawal": {
+            "type": "string"
+          }
+        }
+      },
+      "limits_body_1": {
+        "required": [
+          "deposit",
+          "levelId",
+          "type",
+          "withdrawal"
+        ],
+        "type": "object",
+        "properties": {
+          "levelId": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "deposit": {
+            "type": "string"
+          },
+          "withdrawal": {
+            "type": "string"
+          }
+        }
+      },
+      "users_body": {
+        "required": [
+          "email",
+          "id",
+          "levelId",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "levalId": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "users_body_1": {
+        "required": [
+          "companyId",
+          "email",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "wallets_companies_body": {
+        "required": [
+          "companyId",
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "wallets_users_body": {
+        "required": [
+          "currency",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "webhooks_body": {
+        "required": [
+          "contentType",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "secret": {
+            "type": "string"
+          }
+        }
+      },
+      "webhooks_event_body": {
+        "required": [
+          "eventId",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "eventId": {
+            "type": "integer"
+          }
+        }
+      },
+      "webhooks_activate_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "webhooks_inactivate_body": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

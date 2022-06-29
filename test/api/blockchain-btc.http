@@ -1,0 +1,59 @@
+### Create wallet
+POST {{url}}/blockchain/wallet
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "seed": "d8d78d809328769b97c76b9d77d491235241bd2f42ff76d12b9c8a32ba6314c27311a2f5178baa1beb7fee55d4af6ef782d88e74529b759fdc1add4dccdf0660",
+  "indexId": 1,
+  "currency": "BTC"
+}
+
+### Send transaction
+POST {{url}}/blockchain/send/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "from": "mrd2zdpLJrdT6uVJKK6qkFz9FcPorbqbkc",
+  "to": "n25tJNfSo5jJh8UMwFmQPaBGBsqTKuCoRX",
+  "amount": "0.0001",
+  "currency": "BTC"
+}
+
+### Send transaction (company)
+POST {{url}}/blockchain/send/company
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "from": "mrd2zdpLJrdT6uVJKK6qkFz9FcPorbqbkc",
+  "to": "n25tJNfSo5jJh8UMwFmQPaBGBsqTKuCoRX",
+  "amount": "0.0001",
+  "currency": "BTC"
+}
+
+### Get balance by address and currency
+GET {{url}}/blockchain/balance/address/mx4sofB33bmLcp2mExBByuMyQGeqzFjXGK/currency/BTC
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get transaction by txId and currency
+GET {{url}}/blockchain/transaction/7ee160742b7388c72f79ac5a423e4ee1d54310d8ffa16008bdcd1736e2eb8f64/currency/BTC
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get transactions by txsId and currency
+GET {{url}}/blockchain/transactions/txs/7ee160742b7388c72f79ac5a423e4ee1d54310d8ffa16008bdcd1736e2eb8f64,ecb7619c129cee10504acd31cf2d00c0800fccff830e23cc94b7f88fdb90c9c2/currency/BTC
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get transactions by address and currency
+GET {{url}}/blockchain/transactions/address/mrd2zdpLJrdT6uVJKK6qkFz9FcPorbqbkc/currency/BTC
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get block by height and currency
+GET {{url}}/blockchain/block/height/2065574/currency/BTC
+Content-Type: application/json
+Authorization: {{token}}

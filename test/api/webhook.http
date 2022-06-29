@@ -1,0 +1,47 @@
+### Create webhook
+POST {{url}}/webhooks/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "url": "http://www.algo.com/servicio",
+  "contentType": "application/json"
+}
+
+### Get webhook
+GET {{url}}/webhooks/0feac9aa-21e9-415b-8725-2d62045fc842
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get webhooks by company
+GET {{url}}/webhooks/company/9eb0b6ef-a257-4e91-9f24-88ab162a6f01
+Content-Type: application/json
+Authorization: {{token}}
+
+### Add event
+POST {{url}}/webhooks/event/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "0feac9aa-21e9-415b-8725-2d62045fc842",
+  "eventId": "1"
+}
+
+### Activate webhook
+PUT {{url}}/webhooks/activate
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "0feac9aa-21e9-415b-8725-2d62045fc842"
+}
+
+### Inactivate webhook
+PUT {{url}}/webhooks/inactivate
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "0feac9aa-21e9-415b-8725-2d62045fc842"
+}

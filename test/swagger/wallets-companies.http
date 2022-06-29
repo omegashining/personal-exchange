@@ -1,0 +1,87 @@
+### Create wallet
+POST {{url}}/wallets_companies/
+
+{
+  "id": "1593c6fe-a104-4ca0-b621-0acf8a405732",
+  "address": "0xB2e067b99702A40c6C4c64123cdceb6bD1dCa42D"
+}
+
+### Get wallet by company and currency
+GET {{url}}/wallets_companies/:companyId/currency/:currency
+
+{
+  "id": "1593c6fe-a104-4ca0-b621-0acf8a405732",
+  "walletTypeId": 2,
+  "companyId": "b206e458-ccdf-47e1-903d-d637fce261f3",
+  "publicKey": "public-key",
+  "privateKey": "private-key",
+  "address": "address",
+  "balance": 0,
+  "createdAt": "2021-10-26T02:32:02.000Z",
+  "updatedAt": null
+}
+
+### Get wallet by address and currency
+GET {{url}}/wallets_companies/address/:address/currency/:currency
+
+{
+  "id": "1593c6fe-a104-4ca0-b621-0acf8a405732",
+  "walletTypeId": 2,
+  "companyId": "b206e458-ccdf-47e1-903d-d637fce261f3",
+  "publicKey": "public-key",
+  "privateKey": "private-key",
+  "address": "address",
+  "balance": 0,
+  "createdAt": "2021-10-26T02:32:02.000Z",
+  "updatedAt": null
+}
+
+### Get wallets by company
+GET {{url}}/wallets_companies/:companyId
+
+[
+  {
+    "id": "51be9810-8135-4568-ac37-d7fa647f468a",
+    "walletTypeId": 2,
+    "companyId": "862a2873-f8c1-4cc2-b04e-756c54ec296a",
+    "publicKey": "public-key",
+    "privateKey": "private-key",
+    "address": "address",
+    "balance": 0,
+    "createdAt": "2021-10-26T02:25:38.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "98ff7d34-8fb4-475b-a1fe-d7e9d5fb1fab",
+    "walletTypeId": 3,
+    "companyId": "862a2873-f8c1-4cc2-b04e-756c54ec296a",
+    "publicKey": "public-key",
+    "privateKey": "private-key",
+    "address": "address",
+    "balance": 0,
+    "createdAt": "2021-10-26T02:25:38.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "dde95500-d414-4fbb-8976-95e69fdc8770",
+    "walletTypeId": 4,
+    "companyId": "862a2873-f8c1-4cc2-b04e-756c54ec296a",
+    "publicKey": "public-key",
+    "privateKey": "private-key",
+    "address": "address",
+    "balance": 0,
+    "createdAt": "2021-10-26T02:25:38.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": "f30164a8-a589-4e99-adac-30d4cf317c29",
+    "walletTypeId": 1,
+    "companyId": "862a2873-f8c1-4cc2-b04e-756c54ec296a",
+    "publicKey": "public-key",
+    "privateKey": "private-key",
+    "address": "address",
+    "balance": 0,
+    "createdAt": "2021-10-26T02:25:38.000Z",
+    "updatedAt": null
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "userId": "0808ebfc-872d-44d8-9187-e78feb4c409b",
+    "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+    "levelId": 1,
+    "name": "User Test 1",
+    "email": "user_test_1@domain.com",
+    "password": "user_test_1",
+    "status": "INACTIVE"
+  },
+  {
+    "userId": "0808ebfc-872d-44d8-9187-e78feb4c409b",
+    "companyId": "9eb0b6ef-a257-4e91-9f24-88ab162a6f01",
+    "levelId": 1,
+    "name": "User Test 2",
+    "email": "user_test_2@domain.com",
+    "password": "user_test_2",
+    "status": "INACTIVE"
+  },
+  {
+    "levelId": 1,
+    "name": "User Test Change",
+    "email": "user_test_change@domain.com",
+    "password": "user_test_change"
+  }
+]

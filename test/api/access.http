@@ -1,0 +1,59 @@
+### Get uuid
+GET {{url}}/access/uuid
+Content-Type: application/json
+
+### Authenticate
+POST {{url}}/access/
+Content-Type: application/json
+
+{
+  "email": "root@xoycoin.com",
+  "password": "xoycoin0112358"
+}
+
+### Get access
+GET {{url}}/access/
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get access by id
+GET {{url}}/access/8a57d020-3967-42e9-b3d7-8f893d84d3d2
+Content-Type: application/json
+Authorization: {{token}}
+
+### Enable access session
+PUT {{url}}/access/
+Content-Type: application/json
+Authorization: {{token}}
+
+### Delete access session
+DELETE {{url}}/access/
+Content-Type: application/json
+Authorization: {{token}}
+
+### Activate access
+PUT {{url}}/access/activate
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "3a0a467b-9c66-4bb3-ac39-b503b79ce460"
+}
+
+### Inactivate access
+PUT {{url}}/access/inactivate
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "3a0a467b-9c66-4bb3-ac39-b503b79ce460"
+}
+
+### Lock access
+PUT {{url}}/access/lock
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "3a0a467b-9c66-4bb3-ac39-b503b79ce460"
+}

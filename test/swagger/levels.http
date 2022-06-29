@@ -1,0 +1,44 @@
+### Create level
+POST {{url}}/levels/
+
+{
+  "id": 3
+}
+
+### Update level
+PUT {{url}}/levels/
+
+{
+  "id": 3,
+  "description": "LEVEL_3_CAMBIO"
+}
+
+### Get levels by company
+GET {{url}}/levels/company/:company
+
+[
+  {
+    "id": 1,
+    "companyId": "862a2873-f8c1-4cc2-b04e-756c54ec296a",
+    "order": 1,
+    "description": "LEVEL_1",
+    "createdAt": "2021-10-26T02:25:38.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": 2,
+    "companyId": "862a2873-f8c1-4cc2-b04e-756c54ec296a",
+    "order": 2,
+    "description": "LEVEL_2_CAMBIO",
+    "createdAt": "2021-10-26T02:25:50.000Z",
+    "updatedAt": null
+  },
+  {
+    "id": 3,
+    "companyId": "862a2873-f8c1-4cc2-b04e-756c54ec296a",
+    "order": 3,
+    "description": "LEVEL_3_CAMBIO",
+    "createdAt": "2021-10-26T02:26:54.000Z",
+    "updatedAt": null
+  }
+]

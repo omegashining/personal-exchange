@@ -1,0 +1,44 @@
+### Create wallet
+POST {{url}}/wallets_users/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "userId": "0808ebfc-872d-44d8-9187-e78feb4c409b",
+  "currency": "XOY"
+}
+
+### Get wallets by user
+GET {{url}}/wallets_users/user/2b2c5130-c7d2-4e1b-b1e5-6bb3a3c3afb2
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get wallets by company
+GET {{url}}/wallets_users/company/4f42605a-aa57-4b19-a065-23302842bc2d
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get wallets by company and currency
+GET {{url}}/wallets_users/company/862a2873-f8c1-4cc2-b04e-756c54ec296a/currency/ETH
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get wallet by user and currency
+GET {{url}}/wallets_users/user/a44f45b6-c981-4bb3-9667-925cebd653ff/currency/XOY
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get wallet by address and currency
+GET {{url}}/wallets_users/address/0x75393d51027e34c2279eDB419754155719cA05e3/currency/ETH
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get balances by company
+GET {{url}}/wallets_users/balance/company/862a2873-f8c1-4cc2-b04e-756c54ec296a
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get balance by company and currency
+GET {{url}}/wallets_users/balance/company/862a2873-f8c1-4cc2-b04e-756c54ec296a/currency/ETH
+Content-Type: application/json
+Authorization: {{token}}

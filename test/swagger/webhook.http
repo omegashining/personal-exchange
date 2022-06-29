@@ -1,0 +1,38 @@
+### Create webhook
+POST {{url}}/webhooks/
+
+{
+  "id": "0feac9aa-21e9-415b-8725-2d62045fc842"
+}
+
+### Get webhook
+GET {{url}}/webhooks/:id
+
+{
+  "id": "0feac9aa-21e9-415b-8725-2d62045fc842",
+  "url": "http://www.algo.com/servicio",
+  "secret": null,
+  "contentType": "application/json",
+  "status": "ACTIVE"
+}
+
+### Add event
+POST {{url}}/webhooks/event/
+
+{
+  "result": 1
+}
+
+### Activate webhook
+GET {{url}}/webhooks/activate
+
+{
+  "result": true
+}
+
+### Inactivate webhook
+GET {{url}}/webhooks/inactivate
+
+{
+  "result": true
+}

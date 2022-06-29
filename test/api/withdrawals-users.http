@@ -1,0 +1,9 @@
+### Get withdrawal by hash
+GET {{url}}/withdrawals_users/hash/hash-1
+Content-Type: application/json
+Authorization: {{token}}
+
+### Get withdrawals by wallet
+GET {{url}}/withdrawals_users/wallet/ea3b8571-6ed0-45a9-803b-883ea105d41f
+Content-Type: application/json
+Authorization: {{token}}

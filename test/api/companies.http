@@ -1,0 +1,61 @@
+### Create company
+POST {{url}}/companies/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "name": "Empresa http",
+  "planType": "BASIC"
+}
+
+### Update company
+PUT {{url}}/companies/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "eb6b84dc-a768-43d9-b59e-d1276de51816",
+  "name": "Empresa http cambio",
+  "planType": "PREMIUM"
+}
+
+### Create contract
+POST {{url}}/companies/contract
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "eb6b84dc-a768-43d9-b59e-d1276de51816"
+}
+
+### Get company by id
+GET {{url}}/companies/eb6b84dc-a768-43d9-b59e-d1276de51816
+Content-Type: application/json
+Authorization: {{token}}
+
+### Activate company
+PUT {{url}}/companies/activate
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "38446378-56ff-4cd9-8643-89ef622c7dbd"
+}
+
+### Inactivate company
+PUT {{url}}/companies/inactivate
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "38446378-56ff-4cd9-8643-89ef622c7dbd"
+}
+
+### Lock company
+PUT {{url}}/companies/lock
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "id": "38446378-56ff-4cd9-8643-89ef622c7dbd"
+}
